@@ -1,0 +1,75 @@
+name: Feature Request
+description: Suggest a new efficiency skill or enhancement
+title: "[Feature]: "
+labels: ["enhancement", "needs-discussion"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        💡 Have an idea for a new efficiency skill? We'd love to hear it!
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Feature Type
+      options:
+        - New skill
+        - Enhancement to existing skill
+        - New demo/example
+        - Documentation improvement
+        - Integration with external tool
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What inefficiency or pain point does this address?
+      placeholder: "Currently, when working with large test files, I have to..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: How would this feature work?
+      placeholder: |
+        A new skill called `/test-focus` that:
+        1. Identifies failing tests
+        2. Reads only those test cases
+        3. Provides targeted context
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches have you tried?
+
+  - type: textarea
+    id: token-impact
+    attributes:
+      label: Expected Token Savings
+      description: How much efficiency improvement would this provide?
+      placeholder: "Estimated 70% reduction for test debugging workflows"
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution
+      options:
+        - label: I'm willing to implement this feature
+        - label: I'm willing to help test this feature
+        - label: I'm willing to write documentation for this feature
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any mockups, examples, or related projects

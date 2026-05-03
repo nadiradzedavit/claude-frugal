@@ -1,0 +1,158 @@
+name: Efficiency Report
+description: Share your real-world token savings data
+title: "[Metrics]: "
+labels: ["metrics", "user-feedback"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        📊 Help us validate and improve Claude-Frugal by sharing your usage data!
+
+        This information helps us:
+        - Refine efficiency estimates
+        - Improve skill effectiveness
+        - Build compelling case studies
+        - Apply for grants to expand the project
+
+  - type: input
+    id: workflow
+    attributes:
+      label: Workflow Type
+      description: What were you building/debugging?
+      placeholder: "e.g., REST API, React component, database migration"
+    validations:
+      required: true
+
+  - type: input
+    id: duration
+    attributes:
+      label: Session Duration
+      description: How long was your session?
+      placeholder: "e.g., 3 hours, 45 minutes"
+    validations:
+      required: true
+
+  - type: input
+    id: messages
+    attributes:
+      label: Message Count
+      description: Approximately how many messages?
+      placeholder: "e.g., 120 messages"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: skills-used
+    attributes:
+      label: Which skills did you use?
+      multiple: true
+      options:
+        - slim-read
+        - distill
+        - limit-watch
+        - None (standard workflow)
+    validations:
+      required: true
+
+  - type: input
+    id: slim-read-count
+    attributes:
+      label: Slim-Read Uses
+      description: How many times did you use slim-read?
+      placeholder: "e.g., 15"
+
+  - type: input
+    id: distill-count
+    attributes:
+      label: Distillations
+      description: How many times did you distill?
+      placeholder: "e.g., 2"
+
+  - type: textarea
+    id: comparison
+    attributes:
+      label: Comparison to Standard Workflow
+      description: How did this compare to your typical sessions?
+      placeholder: |
+        Without Claude-Frugal, I would have:
+        - Hit rate limit after 40 messages
+        - Needed to restart 2-3 times
+        - Lost context on architectural decisions
+
+        With Claude-Frugal:
+        - Completed entire feature in one session
+        - Used ~120 messages without limits
+        - Maintained full context throughout
+    validations:
+      required: true
+
+  - type: input
+    id: tokens-estimate
+    attributes:
+      label: Estimated Token Savings
+      description: If known, what were your token savings?
+      placeholder: "e.g., 75% reduction, or specific numbers"
+
+  - type: dropdown
+    id: effectiveness
+    attributes:
+      label: Overall Effectiveness
+      options:
+        - "10x improvement - Game changing"
+        - "5-9x improvement - Highly effective"
+        - "2-4x improvement - Moderately effective"
+        - "1-2x improvement - Somewhat effective"
+        - "No noticeable improvement"
+    validations:
+      required: true
+
+  - type: textarea
+    id: specific-wins
+    attributes:
+      label: Specific Wins
+      description: What worked particularly well?
+      placeholder: |
+        - Slim-read saved me on a 800-line config file
+        - Distill preserved all my debugging context
+        - Never hit yellow zone despite 2-hour session
+
+  - type: textarea
+    id: pain-points
+    attributes:
+      label: Pain Points
+      description: What didn't work as expected?
+      placeholder: |
+        - Slim-read struggled with minified files
+        - Distill missed one critical decision
+        - Had to manually track which functions I'd reviewed
+
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: Suggestions for Improvement
+      description: How could we make this better?
+
+  - type: checkboxes
+    id: permissions
+    attributes:
+      label: Usage Permissions
+      options:
+        - label: You may quote this report in grant applications
+        - label: You may use this data in public benchmarks (anonymized)
+        - label: You may contact me for a detailed case study
+        - label: You may share this on social media (with credit)
+
+  - type: input
+    id: social
+    attributes:
+      label: Social Media Handle (optional)
+      description: If you'd like credit for this report
+      placeholder: "@yourhandle on Twitter/LinkedIn"
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Anything else you'd like to share
