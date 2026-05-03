@@ -1,0 +1,22 @@
+# Session files
+.claude/.session_checkpoint.json
+.claude/frugal.json
+
+# Memory system (user-specific)
+memory/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Test artifacts
+test-output/
