@@ -2,42 +2,57 @@
 
 **One-page cheat sheet for efficiency skills**
 
+## ⚠️ CRITICAL: Skills Are NOT Slash Commands
+
+**DON'T type:** `/distill` or `/slim-read`  
+**DO ask naturally:** "Run distill" or "Use slim-read on auth.py"
+
+Skills are instruction files that Claude follows when you mention them. They're triggered by **natural language**, not slash commands.
+
+**The ONLY slash command you'll use:** `/compact` (built-in Claude Code command)
+
+---
+
 ## The Three Core Skills
 
-### 🗜️ `/distill [N]`
+### 🗜️ `distill` - Context Compression
 **What**: Compress conversation into permanent memory  
 **When**: Yellow zone (30K+ tokens) or after major task  
 **Saves**: 40-60K tokens per cycle  
 **Follow with**: `/compact` to clear history
 
+**How to use:**
 ```
-/distill           # Last 50 messages (default)
-/distill 100       # Last 100 messages (for major milestones)
+"Run distill to compress this conversation"
+"Compress the last 100 messages"
 ```
 
 ---
 
-### 🎯 `/slim-read <file> [target]`
+### 🎯 `slim-read` - Precision File Reading
 **What**: Read only specific function/class from file  
 **When**: You know what you need from a large file  
 **Saves**: 80-95% per file operation
 
+**How to use:**
 ```
-/slim-read auth.py                    # Show file map
-/slim-read auth.py validate_token     # Read one function
-/slim-read auth.py 50-75              # Read line range
+"Use slim-read to show me the structure of auth.py"
+"Read the validate_token function with slim-read"
+"Slim-read lines 50-75 of config.py"
 ```
 
 ---
 
-### 📊 `/limit-watch [--threshold N]`
+### 📊 `limit-watch` - Token Budget Monitor
 **What**: Monitor session token usage  
 **When**: Start of session, before major tasks  
 **Prevents**: Context bloat, surprise rate limits
 
+**How to use:**
 ```
-/limit-watch                    # Default 50K threshold
-/limit-watch --threshold 35000  # Custom threshold
+"Check my token usage with limit-watch"
+"What's my token budget?"
+"Use limit-watch with a 35000 token threshold"
 ```
 
 ---
@@ -55,11 +70,11 @@
 ## The Core Workflow Loop
 
 ```
-1. /limit-watch              (baseline)
-2. Code 30-40 messages       (use slim-read)
-3. Watch for yellow zone     (auto-warned)
-4. /distill                  (compress)
-5. /compact                  (reset)
+1. "Check my token usage"              → Get baseline
+2. Code 30-40 messages                 → Ask for slim-read when needed
+3. Watch for yellow zone               → Claude warns automatically
+4. "Run distill"                       → Compress conversation
+5. /compact                            → Reset (ONLY slash command)
 6. Repeat
 ```
 
@@ -69,40 +84,47 @@
 
 ### Starting a New Session
 ```
-/limit-watch
-"Let's build X feature"
+You: "Check my token usage to get a baseline"
+Claude: [Shows 0 tokens, green zone]
+You: "Let's build X feature"
 ```
 
 ### Reading Large Files
 ```
-# Instead of: Read entire file
-/slim-read components/Header.tsx    # See function map
-/slim-read components/Header.tsx renderMenu
+# Instead of: "Read components/Header.tsx"
+You: "Use slim-read to show me the structure of Header.tsx"
+Claude: [Shows function map]
+
+You: "Now show me just the renderMenu function with slim-read"
+Claude: [Extracts only that function]
 ```
 
 ### Mid-Session Check
 ```
-/limit-watch
+You: "What's my token usage?"
+Claude: [Shows current status]
 # If yellow: finish current task, then distill
 # If green: keep coding
 ```
 
 ### Before Rate Limit
 ```
-🟡 Yellow Zone warning
-[Complete current task]
-/distill
-[Review memory capture]
-/compact
-/limit-watch  # Verify reset
-[Continue coding]
+Claude: 🟡 Yellow Zone warning
+You: [Complete current task]
+You: "Run distill to compress our conversation"
+Claude: [Extracts insights, saves to memory]
+You: /compact
+You: "Check token usage"
+Claude: [Shows green zone - reset successful]
 ```
 
 ### Switching Tasks
 ```
-[Finish feature A]
-/distill  # Capture decisions
-[Start feature B - Claude remembers via memory]
+You: [Finish feature A]
+You: "Run distill to save our decisions"
+You: /compact
+You: "Let's work on feature B"
+     [Claude remembers via memory]
 ```
 
 ---

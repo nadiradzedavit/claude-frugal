@@ -65,6 +65,19 @@ Frugal Session:    [████████████████████
 
 ---
 
+## ⚠️ Important: How Claude Code Skills Work
+
+**These are NOT slash commands.** Claude Code skills are instruction files that Claude reads and follows when you ask naturally.
+
+**DON'T type:** `/distill` or `/slim-read`  
+**DO say:** "Run distill to compress this conversation" or "Use slim-read on auth.py"
+
+Think of skills as Claude's specialized training. When you mention a skill by name in conversation, Claude loads those instructions and follows them.
+
+**The only built-in slash command you'll use is `/compact`** to clear conversation history after distilling.
+
+---
+
 ## 🎯 The Three Power Skills
 
 ### 1. 🗜️ `/distill` - Intelligent Context Compression
@@ -197,51 +210,63 @@ claude
 
 ### Step 3: Start Monitoring
 
+**⚠️ Important:** Skills are triggered by natural language, not slash commands.
+
 ```
-> /limit-watch
-📊 Token Budget: [░░░░░░░░░░] 0 / 50K (Green Zone)
+You: "Check my token usage with limit-watch"
+
+Claude: 📊 Token Budget: [░░░░░░░░░░] 0 / 50K (Green Zone)
+        Starting fresh session. Optimal performance.
 ```
 
 ### Step 4: Use Slim Reading
 
 ```
-> /slim-read auth.py
-📄 auth.py contains:
+You: "Use slim-read to show me the structure of auth.py"
 
-Functions:
-- validate_token (line 45)
-- refresh_session (line 89)
-- hash_password (line 120)
+Claude: 📄 auth.py contains:
 
-> /slim-read auth.py validate_token
-📄 auth.py:45-67
+        Functions:
+        - validate_token (line 45)
+        - refresh_session (line 89)
+        - hash_password (line 120)
 
-def validate_token(token: str) -> bool:
-    """Validates JWT token signature and expiration."""
-    # [function body shown]
+You: "Now use slim-read to show me just the validate_token function"
 
-💾 Saved ~1,850 tokens vs full file read
+Claude: 📄 auth.py:45-67
+
+        def validate_token(token: str) -> bool:
+            """Validates JWT token signature and expiration."""
+            # [function body shown]
+
+        💾 Saved ~1,850 tokens vs full file read
 ```
 
 ### Step 5: Distill When Yellow
 
 ```
-> /limit-watch
-🟡 Token budget: 32K/50K - Yellow Zone
+You: "What's my token usage?"
 
-> /distill
-✅ Distilled 8 key insights from last 50 messages
+Claude: 🟡 Token budget: 32K/50K - Yellow Zone
+        Consider distilling soon.
 
-Saved memories:
-- Project: JWT auth implementation with Redis cache
-- Feedback: User prefers explicit error messages over silent failures
-- Reference: Security patterns in docs/security.md
+You: "Run distill to compress this conversation"
 
-💡 Ready to reclaim context. Run: /compact
+Claude: ✅ Distilled 8 key insights from last 50 messages
 
-> /compact
-Context cleared. Memory preserved. Ready for next 200 messages.
+        Saved memories:
+        - Project: JWT auth implementation with Redis cache
+        - Feedback: User prefers explicit error messages over silent failures
+        - Reference: Security patterns in docs/security.md
+
+        💡 Ready to reclaim context. Run: /compact
+
+You: /compact
+
+Claude: Context cleared. Memory preserved. Ready for next 200 messages.
 ```
+
+**Note:** `/compact` IS a built-in Claude Code command (with the slash).
 
 ---
 
@@ -358,64 +383,64 @@ You'll lose 5-10 messages but preserve all critical decisions.
 
 ## 🛠️ Skills Reference
 
-### `/distill [N]`
+### `distill` - Context Compression
 Compress conversation history into permanent memory.
 
-**Args:**
-- `N` (optional): Number of messages to analyze (default: 50)
-
-**Output:**
-- Memory files in `.claude/memory/`
-- Token savings report
-- Instruction to run `/compact`
-
-**Example:**
+**How to trigger:**
 ```
-/distill     → Last 50 messages
-/distill 100 → Last 100 messages (major milestones)
+"Run distill to compress this conversation"
+"Compress the last 50 messages"
+"Use distill with 100 messages" (for longer compression)
 ```
+
+**What Claude will do:**
+- Analyze last N messages (default: 50)
+- Extract key decisions, code changes, and learnings
+- Save structured memory files to `.claude/memory/`
+- Report token savings
+- Instruct you to run `/compact`
+
+**After distilling:** Run `/compact` to clear history while keeping memory
 
 ---
 
-### `/slim-read <file> [target]`
+### `slim-read` - Precision File Reading
 Read specific code sections instead of entire files.
 
-**Args:**
-- `file` (required): File path
-- `target` (optional): Function/class name or line range
-
-**Output:**
-- Extracted code block
-- Token savings calculation
-- (Without target: file structure map)
-
-**Examples:**
+**How to trigger:**
 ```
-/slim-read api.py                  → Show file map
-/slim-read api.py authenticate     → Read function
-/slim-read api.py 50-75           → Read lines 50-75
+"Use slim-read to show me the structure of auth.py"
+"Read just the authenticate function from api.py with slim-read"
+"Slim-read lines 50-75 of config.py"
 ```
+
+**What Claude will do:**
+- Without target: Show file structure (functions/classes)
+- With function/class: Extract just that definition
+- With line range: Read specific lines only
+- Report token savings vs. full file read
+
+**Token savings:** 85-95% per operation
 
 ---
 
-### `/limit-watch [options]`
+### `limit-watch` - Token Budget Monitor
 Monitor session token usage with zone-based alerts.
 
-**Options:**
-- `--threshold N`: Custom alert threshold (default: 50000)
-- `--auto-distill`: Auto-suggest distill (default: true)
-
-**Output:**
-- Current token count and zone
-- Efficiency metrics
-- Actionable recommendations
-
-**Example:**
+**How to trigger:**
 ```
-/limit-watch
-📊 Token Budget: [████████░░] 42K / 50K (Yellow Zone)
-💡 Distill recommended in next 5-10 messages
+"Check my token usage with limit-watch"
+"What's my current token budget?"
+"Use limit-watch to see where I'm at"
 ```
+
+**What Claude will do:**
+- Calculate current session token usage
+- Show zone status (🟢 Green, 🟡 Yellow, 🔴 Red)
+- Provide efficiency metrics
+- Recommend actions if needed
+
+**Optional:** Ask for custom threshold: "Set limit-watch threshold to 35000"
 
 ---
 
