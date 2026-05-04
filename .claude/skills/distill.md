@@ -10,7 +10,16 @@ args:
 
 # Distill Skill
 
-This skill analyzes recent conversation history, extracts critical decisions, context, and learnings, then saves them to MEMORY.md for long-term retention.
+This skill analyzes recent conversation history, extracts critical decisions, context, and learnings, then saves them to memory for long-term retention.
+
+## How to Invoke
+
+**Natural language triggers** (not slash commands):
+- "Run distill to compress this conversation"
+- "Use distill to extract the last 50 messages"
+- "Compress our conversation history with distill"
+
+Claude will invoke this skill when you request conversation compression.
 
 ## Instructions
 
@@ -29,10 +38,14 @@ This skill analyzes recent conversation history, extracts critical decisions, co
    - **User**: Discovered preferences or working style
    - **Reference**: External resources or documentation locations
 
-4. **Save to Memory**: Write distilled information to appropriate memory files in `/home/pc/.claude/projects/-home-pc-Documents-claude-code-skill/memory/`
+4. **Save to Memory**: Write distilled information to the Claude Code memory system
+   - Memory location: `~/.claude/projects/<project-hash>/memory/`
    - Use existing memory files if updating known facts
    - Create new memory files for novel information
    - Update MEMORY.md index with new entries
+   
+   Note: Memory paths are determined by Claude Code automatically based on the
+   current working directory. This skill integrates with the native memory system.
 
 5. **Generate Compact Instruction**: After saving, output:
    ```

@@ -28,6 +28,19 @@ Precision file reading that extracts only what you need, saving thousands of tok
 - 90-95% token reduction per read
 - Multiplied across 10 files = 500-2K tokens
 
+## How Skills Are Invoked
+
+**Important**: This is a Claude Code skill, not a slash command. Users trigger it naturally in conversation:
+
+✅ **Correct invocation** (natural language):
+- "Use slim-read to show me the auth.py structure"
+- "Can you slim-read just the validate_token function from auth.py?"
+- "Read lines 50-100 of config.py with slim-read"
+
+❌ **Not a slash command**:
+- `/slim-read auth.py` ← This won't work
+- This skill is invoked by Claude when you ask for targeted file reading
+
 ## Instructions
 
 ### When target is specified:
@@ -69,8 +82,8 @@ Precision file reading that extracts only what you need, saving thousands of tok
    - validate_token (line 89)
    - refresh_session (line 156)
    
-   💡 Use: /slim-read {file_path} [target_name]
-   Or specify line range: /slim-read {file_path} 89-95
+   💡 Ask: "Use slim-read to show me [target_name] from {file_path}"
+   Or: "Read lines 89-95 of {file_path} with slim-read"
    ```
 
 ### When to use Slim Read:

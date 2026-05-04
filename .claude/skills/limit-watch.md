@@ -16,6 +16,15 @@ args:
 
 Real-time token budget monitoring for Pro users to stay within efficient usage zones.
 
+## How to Invoke
+
+**Natural language triggers**:
+- "Check my token usage"
+- "What's my current token budget with limit-watch?"
+- "Use limit-watch to see where I'm at"
+
+This is a skill, not a slash command. Ask Claude to check your usage naturally.
+
 ## Token Budget Zones (Pro Tier)
 
 🟢 **Green Zone** (0-30K tokens)

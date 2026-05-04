@@ -3,6 +3,11 @@
 Claude-Frugal Token Calculator
 Demonstrates real-world token savings from efficiency skills
 
+IMPORTANT: This calculator uses mathematical estimates and conservative assumptions.
+Results represent theoretical savings that should be validated against real API usage.
+
+Confidence Level: Medium (mathematical model validated, empirical testing pending)
+
 Usage:
     python token-calculator.py --scenario api-development
     python token-calculator.py --custom --files 20 --messages 60
@@ -172,6 +177,7 @@ def print_report(scenario: Scenario, standard: Dict, frugal: Dict, savings: Dict
     """Print formatted comparison report"""
     print("\n" + "="*70)
     print(f"  Claude-Frugal Token Savings Calculator")
+    print(f"  Confidence: Medium (theoretical estimates)")
     print("="*70)
     print(f"\n📊 Scenario: {scenario.name}")
     print(f"   {scenario.description}\n")
@@ -203,6 +209,11 @@ def print_report(scenario: Scenario, standard: Dict, frugal: Dict, savings: Dict
     bar_frugal = "█" * 30
     print(f"   Standard: [{bar_standard}] 40 messages → Rate limited")
     print(f"   Frugal:   [{bar_frugal}] {40 + savings['additional_messages']} messages → Still productive")
+
+    print(f"\n⚠️  Validation Status:")
+    print(f"   These estimates are based on mathematical models and conservative")
+    print(f"   assumptions. Real-world results may vary ±20%. See TESTING.md for")
+    print(f"   validation methodology and current empirical testing status.")
 
     print("\n" + "="*70 + "\n")
 

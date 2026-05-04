@@ -43,7 +43,25 @@ Result:
 
 ---
 
-## Demo (verified metrics)
+## Project Status & Validation
+
+**Current Phase**: v1.0.x - Theoretical framework complete, empirical validation in progress
+
+| Component | Status | Details |
+|-----------|--------|---------|
+| Mathematical Model | ✅ Complete | Token calculator validated, reproducible |
+| Skill Definitions | ✅ Complete | Three skills documented and installable |
+| Real-World Testing | ⚠️ In Progress | See [TESTING.md](TESTING.md) for methodology |
+| API Validation | 🔴 Needed | Requires real Claude Code session data |
+| User Testimonials | 🔴 Needed | Beta testers welcome |
+
+**Confidence Level**: Claims are based on sound mathematical modeling with conservative assumptions. Real-world validation (±20% variance expected) is the next critical phase.
+
+**How to Help**: Install the skills, use them in real sessions, and share your results. See [TESTING.md](TESTING.md) for test report template.
+
+---
+
+## Demo (theoretical estimates)
 
 **Token Calculator** (run yourself):
 
@@ -100,8 +118,16 @@ ls ~/.claude/skills/
 
 ## Usage
 
-**These are skills, not slash commands.**  
-Trigger them naturally in conversation:
+**Important**: These are Claude Code skills, not slash commands. You trigger them through natural conversation, and Claude invokes them when appropriate.
+
+### How Skills Work
+
+Skills are invoked by **asking Claude** in natural language, not by typing commands:
+
+✅ **Correct**: "Use slim-read to show me the auth.py structure"  
+❌ **Incorrect**: `/slim-read auth.py` (this syntax doesn't work)
+
+When you ask Claude to use a skill, it will invoke the appropriate tool automatically.
 
 ### slim-read
 
@@ -247,7 +273,9 @@ Continue with fresh context + memory
 
 **Average: 97% savings, 8.8× multiplier**
 
-*Reproducible: `python3 demo/token-calculator.py --all`*
+*These are theoretical estimates. Run yourself: `python3 demo/token-calculator.py --all`*
+
+**Validation Status**: Mathematical model complete. Real-world testing in progress. Expected variance ±20%. See [TESTING.md](TESTING.md) for current status and how to contribute validation data.
 
 ---
 
@@ -441,8 +469,11 @@ Run yourself: `python3 demo/token-calculator.py --scenario api-development`
 
 ## FAQ
 
+**Q: Have these skills been validated in real usage?**  
+A: The mathematical model is complete and reproducible. Real-world empirical validation is in progress. See [TESTING.md](TESTING.md) for current status. We're transparent about this being pre-validation phase.
+
 **Q: Does response quality decrease?**  
-A: No. Memory preserves all decisions. You're removing bloat, not intelligence.
+A: Theoretically, no—memory preserves decisions while removing bloat. This needs empirical confirmation through user testing.
 
 **Q: How much can I realistically save?**  
 A: Real users report 3-8× capacity improvement. Depends on workflow.

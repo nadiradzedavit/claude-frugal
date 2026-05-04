@@ -2,9 +2,11 @@
 # Claude-Frugal: Democratizing AI-Assisted Development
 
 **Grant Amount Requested**: $1,200 (6 months @ $200/month)  
-**Project Repository**: github.com/[username]/claude-frugal  
-**Applicant**: [Your Name]  
+**Project Repository**: https://github.com/nadiradzedavit/claude-frugal  
+**Applicant**: Nadir Adzedavit  
 **Date**: May 4, 2026
+
+> **Note**: This is a grant application template. Update the applicant name and verify all details before submission.
 
 ---
 
