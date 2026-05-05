@@ -12,7 +12,6 @@ It combines:
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-blue.svg)](https://claude.ai/code)
 [![Token Savings](https://img.shields.io/badge/Token_Savings-97%25-brightgreen.svg)](README.md)
-[![Tests](https://github.com/nadiradzedavit/claude-frugal/actions/workflows/playwright.yml/badge.svg)](https://github.com/nadiradzedavit/claude-frugal/actions/workflows/playwright.yml)
 [![Release](https://img.shields.io/github/v/release/nadiradzedavit/claude-frugal)](https://github.com/nadiradzedavit/claude-frugal/releases)
 
 ---
