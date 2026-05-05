@@ -12,6 +12,8 @@ It combines:
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-blue.svg)](https://claude.ai/code)
 [![Token Savings](https://img.shields.io/badge/Token_Savings-97%25-brightgreen.svg)](README.md)
+[![Tests](https://github.com/nadiradzedavit/claude-frugal/actions/workflows/playwright.yml/badge.svg)](https://github.com/nadiradzedavit/claude-frugal/actions/workflows/playwright.yml)
+[![Release](https://img.shields.io/github/v/release/nadiradzedavit/claude-frugal)](https://github.com/nadiradzedavit/claude-frugal/releases)
 
 ---
 
@@ -58,6 +60,26 @@ Result:
 **Confidence Level**: Claims are based on sound mathematical modeling with conservative assumptions. Real-world validation (±20% variance expected) is the next critical phase.
 
 **How to Help**: Install the skills, use them in real sessions, and share your results. See [TESTING.md](TESTING.md) for test report template.
+
+---
+
+## Try It Yourself (30 seconds)
+
+Don't trust the claims? **Run the calculator yourself:**
+
+```bash
+git clone https://github.com/nadiradzedavit/claude-frugal.git
+cd claude-frugal
+python3 demo/token-calculator.py --all
+```
+
+**Expected output:**
+- REST API Development: 8.8× capacity
+- Bug Investigation: 4.6× capacity  
+- Legacy Refactoring: 14.7× capacity
+- Average: 97% token savings
+
+**All formulas are open source.** Check `demo/token-calculator.py` to verify the math.
 
 ---
 
@@ -418,6 +440,31 @@ Continue with fresh context + memory
 **Anyone hitting rate limits**:
 - Same Claude quality
 - 8.8× more work done
+
+---
+
+## 🧪 Beta Testing & Early Access
+
+Claude Frugal is in pre-validation phase. **We need your help to validate real-world results!**
+
+**What we're testing:**
+- Real-world token savings (vs. theoretical 97%)
+- Edge cases across different workflows
+- Cross-platform compatibility
+- Integration patterns with Claude Code
+
+**How to participate:**
+1. Install Claude Frugal (30 seconds)
+2. Use it in one real coding session
+3. Submit your results using our [Testing Template](TESTING.md)
+
+**Early testers get:**
+- 🏆 Listed as founding contributors in CONTRIBUTORS.md
+- 📊 Featured in case studies and testimonials
+- 🎯 Direct input on roadmap priorities
+- 💬 Priority support in GitHub Discussions
+
+**Current testers:** Looking for our first 10! [Join the beta →](https://github.com/nadiradzedavit/claude-frugal/discussions)
 
 ---
 
