@@ -1,10 +1,45 @@
-# Contributing to Claude-Frugal
+# Contributing to Claude Frugal
 
-We welcome contributions from the community! This project succeeds when developers share their efficiency hacks.
+## 🚨 We Need Your Help - Beta Testing Priority!
+
+**This project is in pre-validation phase.** The most valuable contribution right now is **real-world testing and feedback**, not new features.
+
+### What We Need Most (Priority Order):
+
+1. **🧪 Beta Testers** - Use the skills in real Claude Code sessions
+2. **📊 Validation Data** - Report actual token savings vs. our estimates
+3. **🐛 Bug Reports** - Document what doesn't work
+4. **📝 Real-World Use Cases** - Share your scenarios and results
 
 ## Ways to Contribute
 
-### 1. Share Your Efficiency Skill
+### 1. **Beta Test the Existing Skills** (Most Valuable!)
+
+Help us validate whether these skills actually work as claimed!
+
+**What to do:**
+1. Install the three skills (slim-read, distill, limit-watch)
+2. Use them in your real Claude Code workflow for at least one week
+3. Track your actual results:
+   - Conversation length before hitting limits (with vs without skills)
+   - Quality of Claude's responses (any degradation?)
+   - Actual token savings (if you can measure)
+   - User experience (frustrating? helpful? neutral?)
+
+**How to report:**
+- Create a GitHub Issue with template "Beta Testing Report"
+- Include:
+  - Your workflow type (e.g., "React development", "Python debugging")
+  - Actual results vs. our claims (8.8× capacity, 97% savings)
+  - What worked well
+  - What didn't work
+  - Screenshots or examples (optional)
+
+**Be honest!** Negative results are just as valuable as positive ones. We need truth, not confirmation bias.
+
+---
+
+### 2. Share Your Efficiency Skill
 
 Have a technique that saves tokens? Turn it into a skill!
 
@@ -43,24 +78,27 @@ Explain the efficiency impact:
 When to use this skill vs alternatives.
 ```
 
-### 2. Report Efficiency Metrics
+### 3. Report Efficiency Metrics
 
-Found a workflow that delivers exceptional savings? Share your data:
-- Token counts before/after
-- Task completed
-- Time saved
-- Rate limit impact
+Found a workflow that delivers measurable savings? Share your **actual data** (not estimates):
+- Real token counts before/after
+- Specific task completed
+- Session duration and message count
+- Did you hit rate limits? When?
+- Quality impact (if any)
 
 Submit via GitHub Issues with tag `efficiency-report`.
 
-### 3. Improve Documentation
+**Critical:** Only report real numbers from actual usage, not theoretical projections.
+
+### 4. Improve Documentation
 
 - Fix typos or unclear instructions
 - Add examples from real-world usage
 - Translate docs to other languages
 - Create video tutorials
 
-### 4. Test Across Platforms
+### 5. Test Across Platforms
 
 Help us validate skills work across:
 - Different operating systems
@@ -118,7 +156,8 @@ For a skill to be merged, it must:
 - **Share generously**: Your efficiency hack could help developers in 50+ countries
 - **Test rigorously**: Broken skills waste more tokens than they save
 - **Document clearly**: Future users should understand your skill in 60 seconds
-- **Measure honestly**: Report real savings, not theoretical maximums
+- **Measure honestly**: Report **real** savings from actual usage, not theoretical maximums or projections
+- **Be transparent**: Negative results help us improve - don't hide problems
 
 ## Recognition
 
