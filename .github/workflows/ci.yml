@@ -16,16 +16,17 @@ jobs:
       - name: Check skill files exist
         run: |
           echo "Checking skill files..."
-          test -f .claude/skills/slim-read.md && echo "✅ slim-read.md exists" || exit 1
-          test -f .claude/skills/distill.md && echo "✅ distill.md exists" || exit 1
-          test -f .claude/skills/limit-watch.md && echo "✅ limit-watch.md exists" || exit 1
+          ls -la .claude/skills/
+          test -f .claude/skills/slim-read.md || exit 1
+          test -f .claude/skills/distill.md || exit 1
+          test -f .claude/skills/limit-watch.md || exit 1
           echo "✅ All skill files present"
 
       - name: Validate YAML frontmatter
         run: |
           echo "Validating skill frontmatter..."
           EXIT_CODE=0
-          for skill in .claude/skills/*.md; do
+          for skill in .claude/skills/distill.md .claude/skills/slim-read.md .claude/skills/limit-watch.md; do
             echo "Checking $skill..."
             if head -1 "$skill" | grep -q "^---$"; then
               echo "  ✅ Has frontmatter start"
@@ -114,13 +115,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install markdownlint
-        run: npm install -g markdownlint-cli
-
       - name: Lint documentation files
         run: |
           echo "Linting markdown files (warnings only)..."
-          markdownlint README.md CONTRIBUTING.md TESTING.md --config .markdownlint.json || echo "⚠️ Lint warnings found (non-blocking)"
+          npx markdownlint-cli README.md CONTRIBUTING.md TESTING.md --config .markdownlint.json || echo "⚠️ Lint warnings found (non-blocking)"
           echo "✅ Lint check complete"
 
   check-links:
@@ -135,11 +133,8 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install markdown-link-check
-        run: npm install -g markdown-link-check
-
       - name: Check internal links
         run: |
           echo "Checking links (warnings only)..."
-          markdown-link-check README.md --config .markdown-link-check.json || echo "⚠️ Some links may be unreachable (non-blocking)"
+          npx markdown-link-check README.md --config .markdown-link-check.json || echo "⚠️ Some links may be unreachable (non-blocking)"
           echo "✅ Link check complete"

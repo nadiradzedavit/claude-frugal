@@ -126,7 +126,10 @@ class TokenCalculator:
         # Distilled conversation: remove context bloat, compress history
         base_conversation = scenario.messages * scenario.avg_message_tokens
         distill_savings = scenario.distillations * (scenario.avg_message_tokens * 30)  # ~30 messages per distill
-        compressed_conversation = base_conversation - distill_savings + (scenario.distillations * cls.DISTILL_OUTPUT_TOKENS)
+        
+        # Ensure compressed conversation doesn't go below reasonable minimum (at least 100 tokens per message)
+        min_compressed = scenario.messages * 100
+        compressed_conversation = max(min_compressed, base_conversation - distill_savings + (scenario.distillations * cls.DISTILL_OUTPUT_TOKENS))
 
         total = slim_tokens + compressed_conversation
 
@@ -145,8 +148,8 @@ class TokenCalculator:
     @classmethod
     def calculate_savings(cls, standard: Dict, frugal: Dict) -> Dict:
         """Calculate savings metrics"""
-        saved = standard["total"] - frugal["total"]
-        percentage = (saved / standard["total"]) * 100 if standard["total"] > 0 else 0
+        saved = max(0, standard["total"] - frugal["total"])
+        percentage = min(99.9, (saved / standard["total"]) * 100) if standard["total"] > 0 else 0
 
         # Additional messages possible with savings (at 250 tokens/msg average)
         additional_messages = saved // 250
@@ -154,7 +157,7 @@ class TokenCalculator:
         # Multiplier effect
         original_capacity = 40  # Standard Pro message limit before issues
         new_capacity = original_capacity + additional_messages
-        multiplier = new_capacity / original_capacity
+        multiplier = max(1.0, new_capacity / original_capacity)
 
         return {
             "tokens_saved": saved,

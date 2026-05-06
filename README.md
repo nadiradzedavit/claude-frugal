@@ -28,7 +28,7 @@ Claude Code Pro ($20/month) is powerful for:
 
 But standard usage hits rate limits after **40–50 messages**.
 
-**Claude Frugal aims to make your token budget go further through intelligent optimization techniques.** Theoretical models estimate up to 8.8× efficiency gains, pending real-world validation.
+**Claude Frugal aims to make your token budget go further through intelligent optimization techniques.** Theoretical models estimate up to 7.9× efficiency gains, pending real-world validation.
 
 ---
 
@@ -42,8 +42,8 @@ Three skills that work together:
 
 Theoretical results (based on mathematical modeling):
 - Maintained Claude quality (needs empirical confirmation)
-- Up to 97% fewer tokens consumed (in testing scenarios)
-- Estimated 350+ messages per session (vs. 40 baseline)
+- Up to 90.7% fewer tokens consumed (in testing scenarios)
+- Estimated 200-300+ messages per session (vs. 40 baseline)
 
 ---
 
@@ -77,10 +77,10 @@ python3 demo/token-calculator.py --all
 ```
 
 **Expected output (theoretical estimates):**
-- REST API Development: estimated 8.8× capacity
+- REST API Development: estimated 7.6× capacity
 - Bug Investigation: estimated 4.6× capacity  
-- Legacy Refactoring: estimated 14.7× capacity
-- Average: up to 97% token savings (in modeling scenarios)
+- Legacy Refactoring: estimated 12.3× capacity
+- Average: up to 90.7% token savings (in modeling scenarios)
 
 **All formulas are open source.** Check `demo/token-calculator.py` to verify the math.
 
@@ -98,13 +98,13 @@ python3 demo/token-calculator.py --all
 ```
 Scenario                   Savings    Multiplier
 ─────────────────────────────────────────────────
-REST API Development       106.2%     8.8x
+REST API Development       90.0%      7.6x
 Bug Investigation          87.7%      4.6x
-Legacy Refactoring         109.4%     14.7x
+Legacy Refactoring         90.7%      12.3x
 Documentation              81.6%      5.0x
-Codebase Review            99.0%      10.7x
+Codebase Review            90.1%      9.8x
 ─────────────────────────────────────────────────
-AVERAGE                    96.8%      8.8x
+AVERAGE                    88.0%      7.9x
 ```
 
 **Interactive Demo**:
@@ -268,7 +268,7 @@ Estimated Result: 350+ msgs in one coherent session (theoretical)
 - Messages possible: **350+ (theoretical)**
 - Sessions needed: **1 (continuous, if validated)**
 
-**Estimated Savings: up to 90% tokens, potential 8.8× capacity** (pending real-world validation)
+**Estimated Savings: up to 90% tokens, potential 7.9× capacity** (pending real-world validation)
 
 ---
 
@@ -312,7 +312,7 @@ Continue with fresh context + memory
 
 | Workflow            | Standard | Frugal  | Savings | Messages |
 |---------------------|----------|---------|---------|----------|
-| REST API Dev        | 63K      | ~9K     | ~85.6%  | ~8.8×    |
+| REST API Dev        | 63K      | ~7K     | ~90%    | ~7.6×    |
 | Bug Investigation   | 38K      | ~7K     | ~81.3%  | ~4.6×    |
 | Legacy Refactoring  | 98K      | ~9K     | ~90.5%  | ~14.7×   |
 | Documentation       | 34K      | ~6K     | ~81.8%  | ~5.0×    |
@@ -320,7 +320,7 @@ Continue with fresh context + memory
 
 ### Theoretical Average
 
-Up to 97% savings, estimated 8.8× multiplier
+Up to 90.7% savings, estimated 7.9× multiplier
 
 *These are theoretical estimates. Run yourself: `python3 demo/token-calculator.py --all`*
 
@@ -475,7 +475,7 @@ Up to 97% savings, estimated 8.8× multiplier
 Claude Frugal is in pre-validation phase. **We need your help to validate real-world results!**
 
 **What we're testing:**
-- Real-world token savings (vs. theoretical 97%)
+- Real-world token savings (vs. theoretical 90.7%)
 - Edge cases across different workflows
 - Cross-platform compatibility
 - Integration patterns with Claude Code
@@ -505,7 +505,7 @@ Hit limits frequently → Restart, lose context
 
 **Frugal Pro usage (estimated)**:
 ```
-$20/month ÷ 350 messages = $0.057 per message (if 8.8× validates)
+$20/month ÷ 300 messages = $0.067 per message (if 7.9× validates)
 Continuous sessions → Minimal context loss (theoretical)
 Potential effective cost: $2.27/month (if efficiency gains confirm)
 ```
@@ -528,7 +528,7 @@ Potential effective cost: $2.27/month (if efficiency gains confirm)
 - Frugal (estimated): `messages × avg_tokens - distill_savings + memory_overhead`
 - Estimated Savings: ~60-80% per distillation cycle
 
-**Combined**: Estimated 85-97% total savings (workflow-dependent, theoretical)
+**Combined**: Estimated 81-90.7% total savings (workflow-dependent, theoretical)
 
 ### Validation Methodology
 

@@ -106,12 +106,21 @@ echo ""
 
 # Verify installation
 echo -e "${WRENCH} Verifying installation..."
-INSTALLED_COUNT=$(find "${SKILLS_DIR}" -name "distill.md" -o -name "slim-read.md" -o -name "limit-watch.md" | wc -l)
+SUCCESS=true
 
-if [ "$INSTALLED_COUNT" -eq 3 ]; then
+for skill in "distill.md" "slim-read.md" "limit-watch.md"; do
+    if [ -f "${SKILLS_DIR}/${skill}" ]; then
+        print_status "Verified: ${skill}"
+    else
+        print_error "Missing: ${skill}"
+        SUCCESS=false
+    fi
+done
+
+if [ "$SUCCESS" = true ]; then
     print_status "All skills installed successfully!"
 else
-    print_error "Installation incomplete. Expected 3 skills, found ${INSTALLED_COUNT}"
+    print_error "Installation incomplete. Some skills are missing."
     exit 1
 fi
 
