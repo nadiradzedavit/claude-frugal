@@ -1,9 +1,32 @@
 # Changelog
 
-All notable changes to Claude-Frugal will be documented in this file.
+All notable changes to Claude Frugal will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased] - 2026-05-06
+
+### Added - Grant Application Preparation
+- **SECURITY.md**: Responsible disclosure policy and security guidelines
+- **Known Limitations section** in README: Transparent documentation of current constraints
+- **Troubleshooting section** in README: Common issues and solutions
+- **Comparison table** in README: Claude Frugal vs alternatives
+- **Prerequisites section** in installation docs
+- **Validation status disclaimer** prominently displayed in README
+- **Project status badges**: Version, license, status, contributions welcome
+
+### Changed - Transparency & Validation Updates
+- **All token savings claims** now properly qualified as "estimated" or "theoretical"
+- **README heading** changed from absolute claims to experimental framing
+- **Economics section** updated with disclaimer about pending validation
+- **Project Status table** updated to reflect honest validation status (0 validated cases)
+- **Badges** updated to show "pre-validation" status clearly
+- **User benefit claims** qualified with "(goal)" and "(pending validation)"
+
+### Improved
+- CONTRIBUTING.md already had beta testing focus (verified and maintained)
+- LICENSE verified as proper MIT license with correct copyright
 
 ## [1.0.0] - 2026-05-03
 

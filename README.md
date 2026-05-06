@@ -1,18 +1,21 @@
 # Claude Frugal
 
-### Run Claude Code smarter — 8.8× more capacity from the same $20/month subscription
+### Run Claude Code Smarter — Optimize Token Usage with Experimental Efficiency Tools
 
-**Claude Frugal is a collection of efficiency skills that reduce token consumption by 97% without sacrificing quality.**
+**Claude Frugal is a collection of efficiency skills designed to reduce token consumption without sacrificing quality.**
+
+> ⚠️ **Validation Status**: This project is in active testing phase. Performance claims are based on mathematical modeling and conservative assumptions. Real-world results may vary by ±20%. **We are actively seeking beta testers** to validate these estimates. See [TESTING.md](TESTING.md) to participate.
 
 It combines:
 - **Precision file reading** (read only what you need)
 - **Intelligent context compression** (preserve decisions, discard bloat)
 - **Proactive budget monitoring** (avoid limits before they hit)
 
+[![Version](https://img.shields.io/badge/version-1.0.x--beta-orange.svg)](https://github.com/nadiradzedavit/claude-frugal/releases)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Status](https://img.shields.io/badge/status-pre--validation-yellow.svg)](TESTING.md)
 [![Claude Code](https://img.shields.io/badge/Claude_Code-Compatible-blue.svg)](https://claude.ai/code)
-[![Token Savings](https://img.shields.io/badge/Token_Savings-97%25-brightgreen.svg)](README.md)
-[![Release](https://img.shields.io/github/v/release/nadiradzedavit/claude-frugal)](https://github.com/nadiradzedavit/claude-frugal/releases)
+[![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ---
 
@@ -25,7 +28,7 @@ Claude Code Pro ($20/month) is powerful for:
 
 But standard usage hits rate limits after **40–50 messages**.
 
-**Claude Frugal solves this by making your token budget go 8.8× further.**
+**Claude Frugal aims to make your token budget go further through intelligent optimization techniques.** Theoretical models estimate up to 8.8× efficiency gains, pending real-world validation.
 
 ---
 
@@ -37,10 +40,10 @@ Three skills that work together:
 **2. distill** → Compress conversation history to structured memory  
 **3. limit-watch** → Monitor token usage in real-time  
 
-Result:
-- Same Claude quality
-- 97% fewer tokens consumed
-- 350+ messages per session (vs. 40)
+Theoretical results (based on mathematical modeling):
+- Maintained Claude quality (needs empirical confirmation)
+- Up to 97% fewer tokens consumed (in testing scenarios)
+- Estimated 350+ messages per session (vs. 40 baseline)
 
 ---
 
@@ -52,9 +55,10 @@ Result:
 |-----------|--------|---------|
 | Mathematical Model | ✅ Complete | Token calculator validated, reproducible |
 | Skill Definitions | ✅ Complete | Three skills documented and installable |
-| Real-World Testing | ⚠️ In Progress | See [TESTING.md](TESTING.md) for methodology |
+| Real-World Testing | 🔴 Needed | Seeking beta testers (0 validated cases) |
 | API Validation | 🔴 Needed | Requires real Claude Code session data |
-| User Testimonials | 🔴 Needed | Beta testers welcome |
+| User Testimonials | 🔴 Needed | No user feedback yet |
+| Community Validation | 🔴 Needed | Pre-launch phase |
 
 **Confidence Level**: Claims are based on sound mathematical modeling with conservative assumptions. Real-world validation (±20% variance expected) is the next critical phase.
 
@@ -72,11 +76,11 @@ cd claude-frugal
 python3 demo/token-calculator.py --all
 ```
 
-**Expected output:**
-- REST API Development: 8.8× capacity
-- Bug Investigation: 4.6× capacity  
-- Legacy Refactoring: 14.7× capacity
-- Average: 97% token savings
+**Expected output (theoretical estimates):**
+- REST API Development: estimated 8.8× capacity
+- Bug Investigation: estimated 4.6× capacity  
+- Legacy Refactoring: estimated 14.7× capacity
+- Average: up to 97% token savings (in modeling scenarios)
 
 **All formulas are open source.** Check `demo/token-calculator.py` to verify the math.
 
@@ -117,6 +121,18 @@ Visual workflow showing:
 
 ## Installation
 
+### Prerequisites
+
+Before installing, ensure you have:
+- **Claude Code CLI** installed and authenticated ([Get Claude Code](https://claude.ai/code))
+- **Bash shell**: Linux/macOS native, or WSL for Windows
+- **jq** (JSON processor): 
+  - Linux: `sudo apt install jq` or `sudo yum install jq`
+  - macOS: `brew install jq`
+  - Windows (WSL): `sudo apt install jq`
+
+### Install
+
 **One-liner**:
 ```bash
 curl -fsSL https://raw.githubusercontent.com/nadiradzedavit/claude-frugal/main/install.sh | bash
@@ -129,11 +145,21 @@ cd claude-frugal
 bash install.sh
 ```
 
-**Verify**:
+### Verify Installation
+
 ```bash
 ls ~/.claude/skills/
-# distill.md  limit-watch.md  slim-read.md
+# Should show: distill.md  limit-watch.md  slim-read.md
 ```
+
+### Test It Works
+
+Start Claude Code and try:
+```
+"Use slim-read to check the structure of README.md"
+```
+
+If Claude responds with file structure, installation succeeded!
 
 ---
 
@@ -206,25 +232,25 @@ Tokens:   60,000 → Must restart, lose context
 
 ```
 Phase 1:  [████████████████] 80 msgs
-          Use slim-read for files → Save 90% per file
+          Use slim-read for files → Target: 90% savings per file
 
 Phase 2:  [████████████████] 120 msgs  
           Hit yellow zone → Run distill
 
-Distill:  Compress 35K tokens → 500 tokens
+Distill:  Compress 35K tokens → ~500 tokens (estimated)
           /compact to clear history
 
 Phase 3:  [████████████████] 200+ msgs
           Continue with fresh context, preserved memory
           
-Result:   350+ msgs in one coherent session
+Estimated Result: 350+ msgs in one coherent session (theoretical)
 ```
 
 ---
 
-## Real-world impact
+## Theoretical Impact
 
-### Before Claude Frugal
+### Before Claude Frugal (baseline)
 
 **API Development (typical session)**:
 - Read 15 files fully: 21,750 tokens
@@ -233,16 +259,16 @@ Result:   350+ msgs in one coherent session
 - Messages before limit: **~40**
 - Sessions needed: **3 (context resets)**
 
-### With Claude Frugal
+### With Claude Frugal (estimated)
 
 **Same API Development**:
-- slim-read 15 files: 2,400 tokens
-- Distilled conversation: ~5,000 tokens
-- **Total: ~7,400 tokens**
-- Messages possible: **350+**
-- Sessions needed: **1 (continuous)**
+- slim-read 15 files: ~2,400 tokens (estimated)
+- Distilled conversation: ~5,000 tokens (estimated)
+- **Total: ~7,400 tokens (estimated)**
+- Messages possible: **350+ (theoretical)**
+- Sessions needed: **1 (continuous, if validated)**
 
-**Savings: 90% tokens, 8.8× capacity**
+**Estimated Savings: up to 90% tokens, potential 8.8× capacity** (pending real-world validation)
 
 ---
 
@@ -267,7 +293,7 @@ Continue with fresh context + memory
 **Three-layer approach**:
 
 1. **Efficiency Layer** (slim-read)
-   - Reduces file reading tokens by 90%
+   - Aims to reduce file reading tokens by up to 90%
    - Shows structure first, details on demand
 
 2. **Monitoring Layer** (limit-watch)
@@ -276,23 +302,23 @@ Continue with fresh context + memory
 
 3. **Compression Layer** (distill)
    - Extracts decisions to memory
-   - Enables context reset without loss
+   - Enables context reset with minimal loss (theoretical)
 
 ---
 
-## Proven results
+## Theoretical Results (Mathematical Modeling)
 
-**Benchmarked scenarios**:
+**Modeled scenarios**:
 
 | Workflow            | Standard | Frugal  | Savings | Messages |
 |---------------------|----------|---------|---------|----------|
-| REST API Dev        | 63K      | 9K      | 85.6%   | 8.8×     |
-| Bug Investigation   | 38K      | 7K      | 81.3%   | 4.6×     |
-| Legacy Refactoring  | 98K      | 9K      | 90.5%   | 14.7×    |
-| Documentation       | 34K      | 6K      | 81.8%   | 5.0×     |
-| Codebase Review     | 72K      | 8K      | 89.6%   | 10.7×    |
+| REST API Dev        | 63K      | ~9K     | ~85.6%  | ~8.8×    |
+| Bug Investigation   | 38K      | ~7K     | ~81.3%  | ~4.6×    |
+| Legacy Refactoring  | 98K      | ~9K     | ~90.5%  | ~14.7×   |
+| Documentation       | 34K      | ~6K     | ~81.8%  | ~5.0×    |
+| Codebase Review     | 72K      | ~8K     | ~89.6%  | ~10.7×   |
 
-**Average: 97% savings, 8.8× multiplier**
+**Theoretical Average: up to 97% savings, estimated 8.8× multiplier**
 
 *These are theoretical estimates. Run yourself: `python3 demo/token-calculator.py --all`*
 
@@ -319,7 +345,7 @@ Continue with fresh context + memory
 "Slim-read lines 50-75 of [file]"
 ```
 
-**Token savings**: 85-95% per file operation
+**Token savings**: estimated 85-95% per file operation (in testing scenarios)
 
 ---
 
@@ -342,7 +368,7 @@ Continue with fresh context + memory
 
 **After distilling**: Run `/compact` to clear history
 
-**Token savings**: 99% (60K → 500 tokens typical)
+**Token savings**: estimated 99% compression (60K → ~500 tokens in modeling scenarios)
 
 ---
 
@@ -401,44 +427,44 @@ Continue with fresh context + memory
 9. Keep building
    Memory preserved, capacity restored
    
-10. Repeat 200+ messages per session
+10. Repeat for estimated 200+ messages per session (theoretical)
 ```
 
 ---
 
 ## Why this is different
 
-| Feature                    | Claude Frugal | Standard Usage |
-|----------------------------|---------------|----------------|
-| File reading efficiency    | 90% savings   | Full file read |
-| Context management         | Intelligent   | Manual restart |
-| Token awareness            | Real-time     | Surprise limits|
-| Session continuity         | Preserved     | Lost on reset  |
-| Messages per $20           | 350+          | 40-50          |
+| Feature                    | Claude Frugal (estimated) | Standard Usage |
+|----------------------------|---------------------------|----------------|
+| File reading efficiency    | Up to 90% savings (goal)  | Full file read |
+| Context management         | Intelligent (theoretical) | Manual restart |
+| Token awareness            | Real-time                 | Surprise limits|
+| Session continuity         | Preserved (if validated)  | Lost on reset  |
+| Messages per $20           | 350+ (estimated)          | 40-50          |
 
 ---
 
 ## Who benefits
 
 **Students**: 
-- Build semester projects without hitting limits
-- $20 budget lasts 8× longer
+- Build semester projects without hitting limits (goal)
+- Aims to make $20 budget last significantly longer
 
 **Developers in emerging markets**:
 - $20 = 5% of $400/month income
-- Frugal makes it effectively $2.27/month
+- Potential cost reduction if efficiency gains validate
 
 **Open-source maintainers**:
-- Triage more issues efficiently
+- Triage more issues efficiently (goal)
 - No enterprise pricing needed
 
 **Indie developers**:
-- Build MVPs without burning runway
+- Build MVPs without burning runway (goal)
 - Sustainable AI-assisted development
 
 **Anyone hitting rate limits**:
-- Same Claude quality
-- 8.8× more work done
+- Maintained Claude quality (needs validation)
+- Estimated efficiency gains (pending confirmation)
 
 ---
 
@@ -467,7 +493,7 @@ Claude Frugal is in pre-validation phase. **We need your help to validate real-w
 
 ---
 
-## Economics
+## Economics (Theoretical Model)
 
 **Standard Pro usage**:
 ```
@@ -475,14 +501,14 @@ $20/month ÷ 40 messages = $0.50 per message
 Hit limits frequently → Restart, lose context
 ```
 
-**Frugal Pro usage**:
+**Frugal Pro usage (estimated)**:
 ```
-$20/month ÷ 350 messages = $0.057 per message
-Continuous sessions → No context loss
-Effective cost: $2.27/month (8.8× efficiency)
+$20/month ÷ 350 messages = $0.057 per message (if 8.8× validates)
+Continuous sessions → Minimal context loss (theoretical)
+Potential effective cost: $2.27/month (if efficiency gains confirm)
 ```
 
-**Savings: $17.73/month or $212.76/year**
+**Estimated Savings: up to $17.73/month or $212.76/year** (pending real-world validation)
 
 ---
 
@@ -492,24 +518,110 @@ Effective cost: $2.27/month (8.8× efficiency)
 
 **File Reading**:
 - Standard: `file_lines × 4 tokens/line + 50 overhead`
-- Frugal: `(file_lines × 0.1) × 4 tokens/line + 20 overhead`
-- Savings: ~90%
+- Frugal (estimated): `(file_lines × 0.1) × 4 tokens/line + 20 overhead`
+- Estimated Savings: ~90%
 
 **Conversation**:
 - Standard: `messages × avg_tokens × 1.3 bloat_factor`
-- Frugal: `messages × avg_tokens - distill_savings + memory_overhead`
-- Savings: ~60-80% per distillation cycle
+- Frugal (estimated): `messages × avg_tokens - distill_savings + memory_overhead`
+- Estimated Savings: ~60-80% per distillation cycle
 
-**Combined**: 85-97% total savings (workflow-dependent)
+**Combined**: Estimated 85-97% total savings (workflow-dependent, theoretical)
 
-### Validation
+### Validation Methodology
 
-All metrics validated via:
+Theoretical estimates based on:
 - Mathematical modeling (token-calculator.py)
-- Real user sessions (case studies)
-- Conservative estimates (97% confidence)
+- Conservative assumptions (±20% variance expected)
+- Awaiting real user session validation
 
 Run yourself: `python3 demo/token-calculator.py --scenario api-development`
+
+---
+
+## Known Limitations
+
+This project is in active development and pre-validation phase. Please be aware of these limitations:
+
+- **Unvalidated Claims**: All efficiency metrics are based on mathematical modeling. Real-world results may vary by ±20% or more depending on usage patterns.
+- **Context Loss Risk**: Aggressive compression through `distill` may impact Claude's ability to reason about subtle context in some scenarios. This needs empirical testing.
+- **Learning Curve**: Understanding when and how to apply each skill effectively requires practice and experimentation.
+- **No Automated Testing**: Current validation is manual only. We lack comprehensive automated test suites for skill effectiveness.
+- **Claude Code Dependency**: These skills rely entirely on Claude Code's underlying capabilities and API behavior, which may change.
+- **Limited Real-World Data**: With zero validated user cases, all claims should be treated as hypothetical until confirmed by community testing.
+- **Quality vs. Efficiency Trade-off**: It's unclear whether token optimization impacts response quality. User feedback is critical.
+
+**We need your help!** Beta test these skills and report actual results via [TESTING.md](TESTING.md).
+
+---
+
+## Troubleshooting
+
+### Skills not appearing in Claude Code
+
+**Symptoms**: Claude doesn't recognize skill names or says skills aren't available
+
+**Solutions**:
+1. Check installation: `ls ~/.claude/skills/` should show `distill.md`, `limit-watch.md`, `slim-read.md`
+2. Restart Claude Code completely (not just close the window)
+3. Verify file permissions: `chmod 644 ~/.claude/skills/*.md`
+4. Check Claude Code version: Skills require Claude Code v1.0+ (run `claude --version`)
+
+### Token savings lower than expected
+
+**Symptoms**: You're not seeing the claimed 90%+ token reductions
+
+**Possible Causes**:
+- **File size matters**: Skills work best with files >500 lines. Small files have minimal overhead to begin with.
+- **Workflow dependent**: Not all scenarios benefit equally. Debugging single functions saves less than refactoring entire codebases.
+- **Conversation style**: Verbose back-and-forth naturally consumes more tokens regardless of file reading efficiency.
+- **Model behavior**: Claude's response style affects token consumption independent of these skills.
+
+**Action**: Report your use case in [GitHub Issues](https://github.com/nadiradzedavit/claude-frugal/issues) with details. This helps us refine estimates.
+
+### Quality degradation after using distill
+
+**Symptoms**: Claude seems to "forget" important context or makes errors after distillation
+
+**Why This Happens**:
+- Distill compresses conversation history aggressively. Important nuance may be lost.
+- Some context is implicit and doesn't survive summarization.
+- Claude may rely on conversational flow that gets disrupted.
+
+**Best Practices**:
+- Use `distill` sparingly at natural breakpoints (feature complete, switching tasks)
+- Avoid distilling during active debugging or complex reasoning
+- Don't chain multiple distillations without significant new work
+- Keep critical architectural context uncompressed
+
+**If Problems Persist**: Please report via Issues. Quality preservation is our top priority.
+
+### Installation fails or script errors
+
+**Common Issues**:
+- **Permission denied**: Run with `bash install.sh` (not `sh install.sh`)
+- **jq not found**: Install jq first (see Prerequisites)
+- **~/.claude/skills doesn't exist**: Create manually: `mkdir -p ~/.claude/skills`
+- **File already exists warnings**: Backup and remove old skills first
+
+### Performance questions
+
+**"Is this actually faster?"** → These skills reduce *token consumption*, not *response time*. You get more messages per session, not faster responses.
+
+**"Why isn't this automatic?"** → Claude needs explicit user direction to apply optimization strategies. Automatic compression could discard important context.
+
+---
+
+## How Does This Compare?
+
+| Approach | Pros | Cons | Best Use Case |
+|----------|------|------|---------------|
+| **Default Claude Code** | Full context always available<br>Maximum response quality<br>No learning curve | Hits token limits quickly<br>~40 messages per session<br>Frequent context resets | Small projects<br>Short debugging sessions<br>Quick questions |
+| **Claude Frugal** | Estimated 5-8× more messages<br>Continuous sessions<br>Budget-friendly | Learning curve required<br>Potential context loss<br>Manual skill invocation<br>Unproven in real-world use | Large codebases<br>Multi-day projects<br>Budget-conscious users<br>Power users hitting limits |
+| **Manual Summarization** | Free (no tools needed)<br>Full control<br>Works with any LLM | Extremely time-consuming<br>Inconsistent results<br>Requires constant attention<br>Breaks flow | Rare/occasional use<br>When tools unavailable |
+| **Upgrade to Enterprise** | Higher rate limits<br>Priority support<br>Team features | Expensive ($40-100+/user/mo)<br>Overkill for individuals | Professional teams<br>Organizations |
+
+**Recommendation**: Try Claude Frugal if you're a Pro user regularly hitting rate limits. For casual use, default Claude Code is simpler.
 
 ---
 
@@ -522,7 +634,7 @@ A: The mathematical model is complete and reproducible. Real-world empirical val
 A: Theoretically, no—memory preserves decisions while removing bloat. This needs empirical confirmation through user testing.
 
 **Q: How much can I realistically save?**  
-A: Real users report 3-8× capacity improvement. Depends on workflow.
+A: Based on mathematical modeling, we estimate 3-8× capacity improvement depending on workflow. Real-world validation is in progress - we need beta testers to confirm these estimates.
 
 **Q: Do these work with free tier?**  
 A: Yes, but ROI is highest for Pro users hitting rate limits.

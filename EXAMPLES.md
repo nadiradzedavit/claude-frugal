@@ -1,5 +1,9 @@
 # Claude-Frugal: Real-World Examples
 
+> **Validation Status**: These examples illustrate theoretical workflows based on mathematical modeling. Actual token savings and capacity improvements are estimates pending real-world validation. See [TESTING.md](TESTING.md) for validation methodology and how to contribute your own data.
+
+---
+
 ## Example 1: Building a REST API
 
 ### Traditional Workflow (No Efficiency Skills)
