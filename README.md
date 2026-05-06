@@ -126,7 +126,7 @@ Visual workflow showing:
 Before installing, ensure you have:
 - **Claude Code CLI** installed and authenticated ([Get Claude Code](https://claude.ai/code))
 - **Bash shell**: Linux/macOS native, or WSL for Windows
-- **jq** (JSON processor): 
+- **jq** (JSON processor):
   - Linux: `sudo apt install jq` or `sudo yum install jq`
   - macOS: `brew install jq`
   - Windows (WSL): `sudo apt install jq`
@@ -318,7 +318,9 @@ Continue with fresh context + memory
 | Documentation       | 34K      | ~6K     | ~81.8%  | ~5.0×    |
 | Codebase Review     | 72K      | ~8K     | ~89.6%  | ~10.7×   |
 
-**Theoretical Average: up to 97% savings, estimated 8.8× multiplier**
+### Theoretical Average
+
+Up to 97% savings, estimated 8.8× multiplier
 
 *These are theoretical estimates. Run yourself: `python3 demo/token-calculator.py --all`*
 
@@ -446,7 +448,7 @@ Continue with fresh context + memory
 
 ## Who benefits
 
-**Students**: 
+**Students**:
 - Build semester projects without hitting limits (goal)
 - Aims to make $20 budget last significantly longer
 

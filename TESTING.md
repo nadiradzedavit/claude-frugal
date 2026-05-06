@@ -32,7 +32,7 @@ python3 demo/token-calculator.py --all
 # Must be validated against real API usage
 ```
 
-**Confidence Level**: 
+**Confidence Level**:
 - Mathematical model: ✅ Complete
 - Real API validation: ⚠️ Pending
 
@@ -41,6 +41,7 @@ python3 demo/token-calculator.py --all
 ### 2. Real Session Testing Protocol
 
 #### Phase 1: Baseline Measurement (Standard Usage)
+
 ```
 Objective: Measure token consumption WITHOUT Claude-Frugal skills
 
@@ -65,6 +66,7 @@ Data to Collect:
 ```
 
 #### Phase 2: Frugal Measurement (With Skills)
+
 ```
 Objective: Measure token consumption WITH Claude-Frugal skills
 
@@ -90,6 +92,7 @@ Data to Collect:
 ```
 
 #### Phase 3: Comparison Analysis
+
 ```
 Calculate:
 - Actual token savings (%)
@@ -111,12 +114,14 @@ If results differ significantly from claims, update README.
 ## Current Test Status
 
 ### ✅ Completed
+
 - [x] Mathematical token calculator
 - [x] Benchmark scenario definitions (5 scenarios)
 - [x] Theoretical framework documentation
 - [x] Skill definitions and instructions
 
 ### ⚠️ In Progress / Needed
+
 - [ ] **Real API validation** (CRITICAL)
   - Actual Claude Code session with baseline usage
   - Actual Claude Code session with Frugal skills
@@ -217,6 +222,7 @@ If results differ significantly from claims, update README.
 ## Testing Roadmap
 
 ### Immediate (Before Grant Submission)
+
 1. ✅ Create this testing framework
 2. ⏳ Run 5+ real Claude Code sessions with skills
 3. ⏳ Document actual token savings from API
@@ -224,6 +230,7 @@ If results differ significantly from claims, update README.
 5. ⏳ Add confidence intervals to all metrics
 
 ### Short-term (Next 2-4 weeks)
+
 1. ⏳ Recruit 5-10 beta testers
 2. ⏳ Collect standardized test reports
 3. ⏳ Analyze variance in results
@@ -231,6 +238,7 @@ If results differ significantly from claims, update README.
 5. ⏳ Create demo video with real session
 
 ### Medium-term (Next 2-3 months)
+
 1. ⏳ A/B testing framework (baseline vs. frugal)
 2. ⏳ Automated token tracking script
 3. ⏳ Statistical analysis of savings
@@ -261,6 +269,7 @@ A: To gather community feedback and recruit testers. The skills are usable and t
 ## Testing Tools
 
 ### Token Estimation Script
+
 ```bash
 # Estimate tokens in a conversation
 python3 demo/token-calculator.py --custom \
@@ -270,6 +279,7 @@ python3 demo/token-calculator.py --custom \
 ```
 
 ### Session Recording Template
+
 ```bash
 # Start a test session with logging
 export CLAUDE_FRUGAL_TEST=1
@@ -281,6 +291,7 @@ export CLAUDE_FRUGAL_LOG="session-$(date +%Y%m%d-%H%M%S).log"
 ```
 
 ### Comparison Script (Future)
+
 ```python
 # Compare baseline vs frugal sessions
 python3 testing/compare_sessions.py \
