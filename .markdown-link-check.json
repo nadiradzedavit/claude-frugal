@@ -1,18 +1,21 @@
 {
   "ignorePatterns": [
     {
-      "pattern": "^https://raw.githubusercontent.com/yourusername"
+      "pattern": "^https://raw.githubusercontent.com/nadiradzedavit"
     },
     {
-      "pattern": "^https://github.com/yourusername"
+      "pattern": "^https://github.com/nadiradzedavit"
     },
     {
       "pattern": "localhost"
+    },
+    {
+      "pattern": "^#"
     }
   ],
   "timeout": "20s",
   "retryOn429": true,
   "retryCount": 3,
   "fallbackRetryDelay": "30s",
-  "aliveStatusCodes": [200, 206]
+  "aliveStatusCodes": [200, 206, 301, 302]
 }
