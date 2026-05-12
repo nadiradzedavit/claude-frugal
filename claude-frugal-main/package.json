@@ -1,0 +1,25 @@
+{
+  "name": "claude-frugal",
+  "version": "0.2.0",
+  "description": "Experimental Claude Code skills for reducing context waste in long coding sessions.",
+  "scripts": {
+    "test": "node tests/project.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nadiradzedavit/claude-frugal.git"
+  },
+  "keywords": [
+    "claude-code",
+    "claude-skills",
+    "token-optimization",
+    "context-management",
+    "developer-tools"
+  ],
+  "author": "nadiradzedavit",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nadiradzedavit/claude-frugal/issues"
+  },
+  "homepage": "https://github.com/nadiradzedavit/claude-frugal#readme"
+}
