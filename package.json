@@ -1,24 +1,25 @@
 {
-  "name": "claude-code-skill",
-  "version": "1.0.0",
-  "description": "**Claude Frugal is a collection of efficiency skills that reduce token consumption by 97% without sacrificing quality.**",
-  "main": "index.js",
+  "name": "claude-frugal",
+  "version": "0.2.0",
+  "description": "Experimental Claude Code skills for reducing context waste in long coding sessions.",
   "scripts": {
-    "test": "playwright test"
+    "test": "node tests/project.test.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nadiradzedavit/claude-frugal.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "claude-code",
+    "claude-skills",
+    "token-optimization",
+    "context-management",
+    "developer-tools"
+  ],
+  "author": "nadiradzedavit",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/nadiradzedavit/claude-frugal/issues"
   },
-  "homepage": "https://github.com/nadiradzedavit/claude-frugal#readme",
-  "devDependencies": {
-    "@playwright/test": "^1.59.1",
-    "@types/node": "^25.6.0"
-  }
+  "homepage": "https://github.com/nadiradzedavit/claude-frugal#readme"
 }

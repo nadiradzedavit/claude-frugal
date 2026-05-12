@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        💡 Have an idea for a new efficiency skill? We'd love to hear it!
+        Have an idea for a new efficiency skill or helper? Please describe the workflow and evidence.
 
   - type: dropdown
     id: type
@@ -39,7 +39,7 @@ body:
       label: Proposed Solution
       description: How would this feature work?
       placeholder: |
-        A new skill called `/test-focus` that:
+        A new skill called `test-focus` that:
         1. Identifies failing tests
         2. Reads only those test cases
         3. Provides targeted context
@@ -57,7 +57,7 @@ body:
     attributes:
       label: Expected Token Savings
       description: How much efficiency improvement would this provide?
-      placeholder: "Estimated 70% reduction for test debugging workflows"
+      placeholder: "Measured data if available; otherwise describe the expected context reduction"
 
   - type: checkboxes
     id: contribution

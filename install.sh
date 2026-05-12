@@ -1,170 +1,149 @@
 #!/usr/bin/env bash
 
-#############################################
-# Claude-Frugal Installation Script
-# Installs efficiency skills for Claude Code
-#############################################
+set -euo pipefail
 
-set -e  # Exit on error
+REPO_URL="https://github.com/nadiradzedavit/claude-frugal"
+RAW_BASE="https://raw.githubusercontent.com/nadiradzedavit/claude-frugal/main"
+TARGET_ROOT="${HOME}/.claude/skills"
+EXPECTED_SKILLS=("slim-read" "distill" "limit-watch")
+TEMP_DIR=""
 
-# Colors for output
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[1;33m'
-BLUE='\033[0;34m'
-NC='\033[0m' # No Color
-
-# Emojis
-CHECK="✅"
-ROCKET="🚀"
-WRENCH="🔧"
-WARN="⚠️"
-INFO="ℹ️"
-FIRE="🔥"
-
-echo ""
-echo -e "${BLUE}════════════════════════════════════════${NC}"
-echo -e "${BLUE}   Claude-Frugal Installer v1.0.0${NC}"
-echo -e "${BLUE}   Token Efficiency Toolkit${NC}"
-echo -e "${BLUE}════════════════════════════════════════${NC}"
-echo ""
-
-# Function to print status messages
-print_status() {
-    echo -e "${GREEN}${CHECK}${NC} $1"
+info() {
+    printf '[info] %s\n' "$1" >&2
 }
 
-print_info() {
-    echo -e "${BLUE}${INFO}${NC} $1"
+ok() {
+    printf '[ok] %s\n' "$1"
 }
 
-print_warn() {
-    echo -e "${YELLOW}${WARN}${NC} $1"
+warn() {
+    printf '[warn] %s\n' "$1" >&2
 }
 
-print_error() {
-    echo -e "${RED}✗${NC} $1"
-}
-
-# Check if running from correct directory
-if [ ! -d ".claude/skills" ]; then
-    print_error "Error: .claude/skills directory not found!"
-    echo ""
-    echo "Please run this script from the claude-frugal repository root:"
-    echo "  cd claude-frugal"
-    echo "  bash install.sh"
-    echo ""
+fail() {
+    printf '[error] %s\n' "$1" >&2
     exit 1
-fi
+}
 
-# Define target directory
-SKILLS_DIR="${HOME}/.claude/skills"
+cleanup() {
+    if [ -n "$TEMP_DIR" ] && [ -d "$TEMP_DIR" ]; then
+        rm -rf "$TEMP_DIR"
+    fi
+}
+trap cleanup EXIT
 
-print_info "Installing Claude-Frugal skills to: ${SKILLS_DIR}"
-echo ""
+download_file() {
+    url="$1"
+    output="$2"
 
-# Check if target directory exists, create if not
-if [ ! -d "${SKILLS_DIR}" ]; then
-    print_info "Creating skills directory..."
-    mkdir -p "${SKILLS_DIR}"
-    print_status "Created ${SKILLS_DIR}"
-else
-    print_status "Skills directory exists"
-fi
+    if command -v curl >/dev/null 2>&1; then
+        curl -fsSL "$url" -o "$output"
+    elif command -v wget >/dev/null 2>&1; then
+        wget -qO "$output" "$url"
+    else
+        fail "curl or wget is required for one-line installation. Clone the repo and run bash install.sh instead."
+    fi
+}
 
-# Count skills to install
-SKILL_COUNT=$(find .claude/skills -name "*.md" | wc -l)
-print_info "Found ${SKILL_COUNT} skills to install"
-echo ""
+prepare_downloaded_source() {
+    TEMP_DIR="$(mktemp -d)"
+    source_root="${TEMP_DIR}/.claude/skills"
+    mkdir -p "$source_root"
 
-# Copy skills with progress
-echo -e "${WRENCH} Installing skills..."
-for skill_file in .claude/skills/*.md; do
-    if [ -f "$skill_file" ]; then
-        skill_name=$(basename "$skill_file")
+    for skill in "${EXPECTED_SKILLS[@]}"; do
+        mkdir -p "${source_root}/${skill}"
+        download_file "${RAW_BASE}/.claude/skills/${skill}/SKILL.md" "${source_root}/${skill}/SKILL.md"
+    done
 
-        # Check if skill already exists
-        if [ -f "${SKILLS_DIR}/${skill_name}" ]; then
-            print_warn "Updating existing skill: ${skill_name}"
-        else
-            print_status "Installing: ${skill_name}"
+    mkdir -p "${source_root}/slim-read/scripts"
+    download_file \
+        "${RAW_BASE}/.claude/skills/slim-read/scripts/slim_read.py" \
+        "${source_root}/slim-read/scripts/slim_read.py"
+
+    printf '%s\n' "$source_root"
+}
+
+find_source_root() {
+    local_source_root=".claude/skills"
+
+    if [ -d "$local_source_root" ]; then
+        local_complete=true
+        for skill in "${EXPECTED_SKILLS[@]}"; do
+            if [ ! -f "${local_source_root}/${skill}/SKILL.md" ]; then
+                local_complete=false
+            fi
+        done
+
+        if [ "$local_complete" = true ]; then
+            printf '%s\n' "$local_source_root"
+            return
         fi
 
-        # Copy the skill
-        cp "$skill_file" "${SKILLS_DIR}/"
+        info "Local .claude/skills exists but does not contain the Claude Frugal package."
     fi
-done
 
-echo ""
+    info "Downloading skill package from ${REPO_URL}."
+    prepare_downloaded_source
+}
 
-# Set correct permissions
-print_info "Setting permissions..."
-chmod 644 "${SKILLS_DIR}"/*.md
-print_status "Permissions set (644)"
+validate_source_root() {
+    source_root="$1"
 
-echo ""
+    for skill in "${EXPECTED_SKILLS[@]}"; do
+        [ -f "${source_root}/${skill}/SKILL.md" ] || fail "Missing ${source_root}/${skill}/SKILL.md"
+    done
+    [ -f "${source_root}/slim-read/scripts/slim_read.py" ] || fail "Missing slim-read helper script"
+}
 
-# Verify installation
-echo -e "${WRENCH} Verifying installation..."
-SUCCESS=true
+install_skill() {
+    source_root="$1"
+    skill="$2"
+    source_dir="${source_root}/${skill}"
+    target_dir="${TARGET_ROOT}/${skill}"
 
-for skill in "distill.md" "slim-read.md" "limit-watch.md"; do
-    if [ -f "${SKILLS_DIR}/${skill}" ]; then
-        print_status "Verified: ${skill}"
-    else
-        print_error "Missing: ${skill}"
-        SUCCESS=false
+    if [ -f "${TARGET_ROOT}/${skill}.md" ]; then
+        warn "Legacy flat skill file found: ${TARGET_ROOT}/${skill}.md"
+        warn "Claude Frugal now installs ${target_dir}/SKILL.md. Remove the old file manually if it causes conflicts."
     fi
-done
 
-if [ "$SUCCESS" = true ]; then
-    print_status "All skills installed successfully!"
-else
-    print_error "Installation incomplete. Some skills are missing."
-    exit 1
-fi
+    mkdir -p "$target_dir"
+    cp -R "${source_dir}/." "$target_dir/"
+    chmod 644 "${target_dir}/SKILL.md"
 
-echo ""
-echo -e "${GREEN}════════════════════════════════════════${NC}"
-echo -e "${GREEN}${FIRE} Installation Complete! ${FIRE}${NC}"
-echo -e "${GREEN}════════════════════════════════════════${NC}"
-echo ""
-echo "Installed skills:"
-echo "  ${CHECK} distill      - Compress conversations (99% token reduction)"
-echo "  ${CHECK} slim-read    - Precision file reading (90% token savings)"
-echo "  ${CHECK} limit-watch  - Real-time budget monitoring"
-echo ""
-echo -e "${YELLOW}═══════════════════════════════════════════════════════${NC}"
-echo -e "${YELLOW}📌 IMPORTANT: How to Use These Skills${NC}"
-echo -e "${YELLOW}═══════════════════════════════════════════════════════${NC}"
-echo ""
-echo -e "${BLUE}Claude Code skills are NOT slash commands.${NC}"
-echo "They're triggered by natural language requests."
-echo ""
-echo -e "${GREEN}${ROCKET} How to Use:${NC}"
-echo ""
-echo "  1. Open Claude Code in your project:"
-echo -e "     ${BLUE}claude${NC}"
-echo ""
-echo "  2. Ask Claude naturally to check your token budget:"
-echo -e "     ${BLUE}\"Check my token usage with limit-watch\"${NC}"
-echo -e "     ${BLUE}\"How many tokens have I used?\"${NC}"
-echo ""
-echo "  3. Request precision file reading:"
-echo -e "     ${BLUE}\"Use slim-read to show me the authenticate function in auth.py\"${NC}"
-echo -e "     ${BLUE}\"Read just the UserModel class from models.py\"${NC}"
-echo ""
-echo "  4. When you hit yellow zone (30K+ tokens):"
-echo -e "     ${BLUE}\"Run distill to compress this conversation\"${NC}"
-echo -e "     ${BLUE}\"Compress our chat history into memory\"${NC}"
-echo ""
-echo "  5. After distilling, clear context:"
-echo -e "     ${BLUE}\"/compact\"${NC} ${YELLOW}(this IS a built-in command)${NC}"
-echo ""
-echo -e "${YELLOW}═══════════════════════════════════════════════════════${NC}"
-echo ""
-echo -e "${INFO} Documentation: https://github.com/yourusername/claude-frugal"
-echo -e "${INFO} Need help? Open an issue on GitHub"
-echo ""
-echo -e "${GREEN}Happy coding! ${ROCKET}${NC}"
-echo ""
+    if [ -d "${target_dir}/scripts" ]; then
+        find "${target_dir}/scripts" -type f -name "*.py" -exec chmod 755 {} \;
+    fi
+
+    ok "Installed ${skill}"
+}
+
+main() {
+    printf '\nClaude Frugal installer\n'
+    printf 'Target: %s\n\n' "$TARGET_ROOT"
+
+    source_root="$(find_source_root)"
+    validate_source_root "$source_root"
+
+    mkdir -p "$TARGET_ROOT"
+
+    for skill in "${EXPECTED_SKILLS[@]}"; do
+        install_skill "$source_root" "$skill"
+    done
+
+    printf '\nInstalled skills:\n'
+    for skill in "${EXPECTED_SKILLS[@]}"; do
+        if [ -f "${TARGET_ROOT}/${skill}/SKILL.md" ]; then
+            printf '  - %s\n' "${TARGET_ROOT}/${skill}/SKILL.md"
+        else
+            fail "Verification failed for ${skill}"
+        fi
+    done
+
+    printf '\nUsage examples:\n'
+    printf '  Ask Claude Code: "Use slim-read to inspect demo/token-calculator.py"\n'
+    printf '  Ask Claude Code: "Run distill before I compact this session"\n'
+    printf '  Ask Claude Code: "Check whether this context is getting large"\n'
+    printf '\nDocs: %s\n\n' "$REPO_URL"
+}
+
+main "$@"

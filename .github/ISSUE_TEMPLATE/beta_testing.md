@@ -1,63 +1,41 @@
 ---
 name: Beta Testing Report
-about: Share your real-world testing results
+about: Share results from a real Claude Code session
 title: '[BETA] '
 labels: 'beta-testing, validation'
 assignees: ''
 ---
 
-## Your Testing Environment
+## Environment
+
 - Claude Code version:
 - OS:
-- Primary workflow type: (e.g., Python dev, React, debugging, etc.)
+- Project language/framework:
 
-## Testing Duration
-- Start date:
-- End date:
-- Approximate hours of usage:
+## Session
 
-## Claims Tested
-- [ ] slim-read token savings
-- [ ] distill compression
-- [ ] limit-watch monitoring
-- [ ] Overall capacity increase
+- Task:
+- Approximate duration:
+- Approximate message count:
+- Skills used:
+  - [ ] slim-read
+  - [ ] distill
+  - [ ] limit-watch
 
 ## Results
 
-### Token Savings
-**Our claim:** Up to 81-97% savings
-**Your experience:**
-- Estimated savings: __%
-- Based on: (describe how you measured)
+- What helped:
+- What was confusing:
+- Did output quality change:
+- Did you measure tokens:
 
-### Capacity Increase
-**Our claim:** 5-9× more messages per session
-**Your experience:**
-- Messages before limits (without skills): __
-- Messages before limits (with skills): __
-- Multiplier: __x
+## Details
 
-### Quality Impact
-**Our claim:** Maintained quality
-**Your experience:**
-- [ ] No quality degradation
-- [ ] Minor quality degradation (describe below)
-- [ ] Significant quality degradation (describe below)
+If `slim-read` missed a symbol or `distill` missed important context, include
+the file shape or summary details needed to reproduce it.
 
-Details:
+## Recommendation
 
-## What Worked Well
-
-
-## What Didn't Work
-
-
-## Specific Examples
-(Optional: include screenshots, code snippets, or conversation excerpts)
-
-## Would you recommend this to others?
-- [ ] Yes, as-is
-- [ ] Yes, with caveats (explain below)
-- [ ] No (explain below)
-
-## Additional Comments
+- [ ] Useful as-is
+- [ ] Useful with changes
+- [ ] Not useful for this workflow
